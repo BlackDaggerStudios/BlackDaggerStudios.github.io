@@ -588,7 +588,9 @@
     youtube: "https://www.youtube.com/channel/UCyZihVd1fm_9QD7kMjyrAzg",
     youtubeSub: "https://www.youtube.com/channel/UCyZihVd1fm_9QD7kMjyrAzg?sub_confirmation=1",
     introVideo: "FoUhn3gUAiM",
-    discordGuild: "1569076137554874519"
+    discordGuild: "1569076137554874519",
+    // Bots on the server (names as shown in the Discord widget). They are not counted as people online.
+    discordBots: ["Bloxlink", "Carl-bot", "Honeypot", "Ticket Tool"]
   };
 
   const T = {
@@ -906,7 +908,13 @@
   // Discord: live count of members online, from the server widget.
   fetch("https://discord.com/api/guilds/" + CONFIG.discordGuild + "/widget.json")
     .then(r => r.ok ? r.json() : Promise.reject())
-    .then(d => { if (typeof d.presence_count === "number" && d.presence_count > 0) { online = d.presence_count; showOnline(); } })
+    .then(d => {
+      if (typeof d.presence_count !== "number") return;
+      const bots = new Set(CONFIG.discordBots.map(b => b.toLowerCase()));
+      const botsOnline = (d.members || []).filter(m => bots.has(String(m.username || "").toLowerCase())).length;
+      const people = d.presence_count - botsOnline;
+      if (people > 0) { online = people; showOnline(); }
+    })
     .catch(() => {});
 </script>
 </body>
