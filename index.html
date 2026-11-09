@@ -16,7 +16,8 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B0B0C'/%3E%3Cg transform='translate(32.5 31.5) rotate(-45)'%3E%3Cpath d='M-27 0 L9 -3.6 L9 3.6 Z' fill='%23C9C9CE'/%3E%3Crect x='9' y='-9.5' width='3.6' height='19' rx='1.2' fill='%239A9AA0'/%3E%3Crect x='12.6' y='-2.8' width='11' height='5.6' rx='1.4' fill='%237A0F22' stroke='%23E53950' stroke-width='1.1'/%3E%3Ccircle cx='26.4' cy='0' r='3.4' fill='%239A9AA0'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B0B0C'/%3E%3Cg transform='translate(32.5 31.5) rotate(-45)'%3E%3Cpath d='M-27 0 L9 -3.6 L9 3.6 Z' fill='%23C9C9CE'/%3E%3Crect x='9' y='-9.5' width='3.6' height='19' rx='1.2' fill='%239A9AA0'/%3E%3Crect x='12.6' y='-3' width='11' height='6' rx='1.4' fill='%23D3183A'/%3E%3Ccircle cx='26.4' cy='0' r='3.4' fill='%239A9AA0'/%3E%3C/g%3E%3C/svg%3E">
+<script>document.documentElement.classList.add("js");</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -125,58 +126,17 @@
   .scroll-cue svg { width: 22px; height: 22px; animation: nudge 2.4s ease-in-out 3.5s infinite; }
   @keyframes nudge { 0%, 70%, 100% { transform: translateY(0); } 80% { transform: translateY(5px); } }
 
-  /* Hero logo sequence: BLACK, DAGGER, then the dagger strikes in tip-first from the top right */
-  .w1 { animation: word .55s ease-out .25s both; }
-  .w2 { animation: word .55s ease-out .7s both; }
-  @keyframes word { from { fill-opacity: 0; stroke-opacity: 0; } to { fill-opacity: 1; stroke-opacity: 1; } }
-  .word-flash { opacity: 0; }
-  .wf1 { animation: wflash .9s ease-out .25s both; }
-  .wf2 { animation: wflash .9s ease-out .7s both; }
-  @keyframes wflash { 0% { opacity: 0; } 15% { opacity: .75; } 100% { opacity: 0; } }
-  .strike { animation: strike .34s var(--strike) 1.15s both; }
-  @keyframes strike {
-    0% { transform: translateX(1150px); }
-    82% { transform: translateX(-9px); }
-    100% { transform: translateX(0); }
-  }
-  .streak { opacity: 0; animation: streak .42s ease-out 1.15s both; }
-  @keyframes streak { 0% { opacity: .9; } 100% { opacity: 0; } }
-  .impact { animation: impact .4s ease-out 1.46s both; }
-  @keyframes impact {
-    0%, 100% { transform: translate(0, 0); }
-    20% { transform: translate(3px, -2px); }
-    45% { transform: translate(-2px, 1px); }
-    70% { transform: translate(1px, 0); }
-  }
-  .studios { animation: studios 1s var(--strike) 1.46s both; }
-  @keyframes studios { from { opacity: 0; letter-spacing: 4px; } to { opacity: 1; letter-spacing: 16px; } }
-  .hero-glow { animation: glowup 1.2s ease-out 1.46s both; }
+  /* Hero logo: driven frame by frame from JS with the same math as the trailer (intro.py) */
+  .js .hero-logo { visibility: hidden; animation: reveal 0s 3s forwards; }
+  .js .hero-logo.live { visibility: visible; animation: none; }
+  @keyframes reveal { to { visibility: visible; } }
+  .hero-glow { animation: glowup 1.2s ease-out 1.85s both; }
   @keyframes glowup { from { opacity: .35; } 30% { opacity: 1.4; } to { opacity: 1; } }
 
-  .gem-glow { opacity: 0; animation: gemfire 1.4s ease-out 1.5s both, gembreath 4s ease-in-out 2.9s infinite; }
-  @keyframes gemfire { 0% { opacity: 0; } 20% { opacity: 1; } 100% { opacity: .55; } }
-  @keyframes gembreath { 0%, 100% { opacity: .55; } 50% { opacity: .95; } }
-
-  /* Glint: a bright band runs from the guard to the tip, with a small star riding on it */
-  .glint { transform: translateX(200px); animation: glint 7s cubic-bezier(.45,0,.25,1) 1.7s infinite; }
-  @keyframes glint {
-    0% { transform: translateX(200px); }
-    11% { transform: translateX(-330px); }
-    100% { transform: translateX(-330px); }
-  }
-  .spark { opacity: 0; animation: spark 7s cubic-bezier(.45,0,.25,1) 1.7s infinite; }
-  @keyframes spark {
-    0% { opacity: 0; transform: translateX(118px) scale(1); }
-    2% { opacity: 1; }
-    9% { opacity: 1; transform: translateX(-215px) scale(.55); }
-    11% { opacity: 0; transform: translateX(-250px) scale(.35); }
-    100% { opacity: 0; transform: translateX(-250px) scale(.35); }
-  }
-
   .hero-copy > * { animation: rise .7s ease-out both; }
-  .hero-copy > :nth-child(1) { animation-delay: 1.75s; }
-  .hero-copy > :nth-child(2) { animation-delay: 1.9s; }
-  .hero-copy > :nth-child(3) { animation-delay: 2.05s; }
+  .hero-copy > :nth-child(1) { animation-delay: 2.1s; }
+  .hero-copy > :nth-child(2) { animation-delay: 2.25s; }
+  .hero-copy > :nth-child(3) { animation-delay: 2.4s; }
   @keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
 
   .tagline { margin: 8px 0 0; font-size: clamp(19px, 2.4vw, 24px); font-weight: 500; color: var(--steel); max-width: 42ch; margin-inline: auto; }
@@ -351,9 +311,7 @@
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after { animation: none !important; transition: none !important; }
-    .w1, .w2, .studios, .hero-copy > * { opacity: 1; fill-opacity: 1; stroke-opacity: 1; }
-    .gem-glow { opacity: .55; }
-    .glint, .spark, .streak, .word-flash { opacity: 0; }
+    .hero-copy > * { opacity: 1; }
     .hero-glow { opacity: 1; }
     .js .stamp.armed { opacity: 1; }
     .js h2:not(.in)::after { transform: none; opacity: 1; }
@@ -376,8 +334,8 @@
         <path d="M-22 0 L8.5 -0.7 L8.5 0.7 Z" fill="#6A6A70"/>
         <rect x="9" y="-9.5" width="3.6" height="19" rx="1.2" fill="#9A9AA0"/>
         <circle cx="10.8" cy="0" r="1.5" fill="#E53950"/>
-        <rect x="12.6" y="-2.8" width="11" height="5.6" rx="1.4" fill="#7A0F22" stroke="#E53950" stroke-width="1.1"/>
-        <path d="M16 -2.8 L15.2 2.8 M19.4 -2.8 L18.6 2.8" stroke="#E53950" stroke-width="0.8"/>
+        <rect x="12.6" y="-3" width="11" height="6" rx="1.4" fill="#D3183A"/>
+        <path d="M16.2 -3 L15.4 3 M19.6 -3 L18.8 3" stroke="#9E0F28" stroke-width="0.7"/>
         <circle cx="26.4" cy="0" r="3.4" fill="#9A9AA0"/>
       </g>
     </svg>
@@ -412,44 +370,46 @@
           <stop offset="0.5" stop-color="#FFFFFF" stop-opacity="1"/>
           <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
         </linearGradient>
-        <linearGradient id="streakGrad" x1="0" x2="1" y1="0" y2="0">
-          <stop offset="0" stop-color="#EDEBE8" stop-opacity=".7"/>
-          <stop offset="1" stop-color="#EDEBE8" stop-opacity="0"/>
+        <linearGradient id="streakGrad" x1="1" x2="0" y1="0" y2="0">
+          <stop offset="0" stop-color="#EDEBE8" stop-opacity="0"/>
+          <stop offset="1" stop-color="#EDEBE8" stop-opacity="0.7"/>
         </linearGradient>
-        <radialGradient id="gemGlow">
-          <stop offset="0" stop-color="#FF3B55" stop-opacity="0.95"/>
-          <stop offset="1" stop-color="#C8102E" stop-opacity="0"/>
-        </radialGradient>
-        <radialGradient id="sparkGlow">
+        <radialGradient id="flareGrad" cx="50%" cy="50%" r="50%">
           <stop offset="0" stop-color="#FFFFFF" stop-opacity="1"/>
-          <stop offset=".3" stop-color="#FFFFFF" stop-opacity=".5"/>
+          <stop offset="0.25" stop-color="#FFFFFF" stop-opacity="0.6"/>
           <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
         </radialGradient>
-        <filter id="wordBlur" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="5"/></filter>
+        <filter id="gemBlur" x="-300%" y="-300%" width="700%" height="700%"><feGaussianBlur stdDeviation="9"/></filter>
+        <filter id="wordBlur" x="-20%" y="-50%" width="140%" height="200%"><feGaussianBlur stdDeviation="6"/></filter>
       </defs>
       <g transform="translate(0,-60)">
-        <g class="impact">
+        <g id="hl-kick">
           <g transform="translate(360,212) rotate(-24) scale(0.8)">
-            <g class="strike">
-              <path class="streak" d="M250 -12 L1500 -2 L1500 2 L250 12 Z" fill="url(#streakGrad)"/>
+            <path id="hl-streak" d="M1700 0 L250 -12 L250 12 Z" fill="url(#streakGrad)" opacity="0"/>
+            <g id="hl-dagger">
               <path d="M-260 0 L128 -12 L128 12 Z" fill="#A6A6AB"/>
               <path d="M-225 0 L122 -1.8 L122 1.8 Z" fill="#5A5A60"/>
-              <g clip-path="url(#bladeClip)"><rect class="glint" x="-60" y="-16" width="120" height="32" fill="url(#glintGrad)"/></g>
               <path d="M126 -44 L142 -36 L142 36 L126 44 L120 0 Z" fill="#7E7E85" stroke="#4A4A50" stroke-width="2"/>
-              <circle class="gem-glow" cx="133" cy="0" r="18" fill="url(#gemGlow)"/>
-              <circle cx="133" cy="0" r="5" fill="#C8102E"/>
               <rect x="142" y="-8" width="84" height="16" rx="3" fill="#3A0A14" stroke="#C8102E" stroke-width="2.5"/>
               <path d="M160 -8 L154 8 M178 -8 L172 8 M196 -8 L190 8 M214 -8 L208 8" stroke="#C8102E" stroke-width="2"/>
               <circle cx="240" cy="0" r="13" fill="#7E7E85" stroke="#4A4A50" stroke-width="2"/>
-              <g class="spark">
-                <circle r="14" fill="url(#sparkGlow)"/>
-                <path d="M-26 0 L0 -1.4 L26 0 L0 1.4 Z M0 -16 L1.1 0 L0 16 L-1.1 0 Z" fill="#FFFFFF"/>
+              <g clip-path="url(#bladeClip)">
+                <rect id="hl-glint" x="70" y="-14" width="140" height="28" fill="url(#glintGrad)" opacity="0"/>
+                <rect id="hl-glint2" x="105" y="-14" width="70" height="28" fill="url(#glintGrad)" opacity="0"/>
+              </g>
+              <circle id="hl-gemglow" cx="133" cy="0" r="16" fill="#FF2A48" opacity="0.45" filter="url(#gemBlur)"/>
+              <circle cx="133" cy="0" r="5" fill="#C8102E"/>
+              <circle id="hl-gemcore" cx="133" cy="0" r="5" fill="#FF6B7E" opacity="0.5"/>
+              <circle id="hl-gemspec" cx="131.5" cy="-1.5" r="1.6" fill="#FFFFFF" opacity="0.45"/>
+              <g id="hl-flare" opacity="0">
+                <circle r="18" fill="url(#flareGrad)"/>
+                <path d="M-40 0 L0 -1.6 L40 0 L0 1.6 Z M0 -26 L1.2 0 L0 26 L-1.2 0 Z" fill="#FFFFFF"/>
               </g>
             </g>
           </g>
-          <text xml:space="preserve" x="360" y="226" text-anchor="middle" font-family="Cinzel, serif" font-weight="800" font-size="56" letter-spacing="8" fill="#FFFFFF" filter="url(#wordBlur)" aria-hidden="true"><tspan class="word-flash wf1">BLACK</tspan><tspan class="word-flash wf2"> DAGGER</tspan></text>
-          <text xml:space="preserve" x="360" y="226" text-anchor="middle" font-family="Cinzel, serif" font-weight="800" font-size="56" letter-spacing="8" fill="#EDEBE8" stroke="#0B0B0C" stroke-width="6" stroke-linejoin="round" paint-order="stroke"><tspan class="w1">BLACK</tspan><tspan class="w2"> DAGGER</tspan></text>
-          <text class="studios" x="360" y="272" text-anchor="middle" font-family="Cinzel, serif" font-weight="700" font-size="19" letter-spacing="16" fill="#E53950">STUDIOS</text>
+          <text xml:space="preserve" x="360" y="226" text-anchor="middle" font-family="Cinzel, serif" font-weight="800" font-size="56" letter-spacing="8" fill="#FFFFFF" filter="url(#wordBlur)"><tspan id="hl-fb" fill-opacity="0">BLACK</tspan><tspan id="hl-fd" fill-opacity="0"> DAGGER</tspan></text>
+          <text xml:space="preserve" x="360" y="226" text-anchor="middle" font-family="Cinzel, serif" font-weight="800" font-size="56" letter-spacing="8" fill="#EDEBE8" stroke="#050506" stroke-width="6" stroke-linejoin="round" paint-order="stroke"><tspan id="hl-b">BLACK</tspan><tspan id="hl-d"> DAGGER</tspan></text>
+          <text id="hl-studios" x="360" y="272" text-anchor="middle" font-family="Cinzel, serif" font-weight="700" font-size="20" letter-spacing="16" fill="#E53950">STUDIOS</text>
         </g>
       </g>
     </svg>
@@ -703,6 +663,77 @@
   let lang = "en";
   let online = null;
   let decryptRun = 0;
+
+  // Hero logo: the same timeline and math as the studio intro (Marka/intro/intro.py), shifted 0.3 s earlier.
+  (function heroLogo() {
+    const svg = document.querySelector(".hero-logo");
+    if (!svg) return;
+    const $ = id => document.getElementById(id);
+    const E = { kick: $("hl-kick"), streak: $("hl-streak"), dagger: $("hl-dagger"), glint: $("hl-glint"), glint2: $("hl-glint2"),
+      gemglow: $("hl-gemglow"), gemcore: $("hl-gemcore"), gemspec: $("hl-gemspec"), flare: $("hl-flare"),
+      fb: $("hl-fb"), fd: $("hl-fd"), b: $("hl-b"), d: $("hl-d"), studios: $("hl-studios") };
+    const T_BLACK = .55, T_DAGGER = 1.25, T_STRIKE = 1.95, T_ARRIVE = 2.15, T_GLINT = 2.2, T_GLINT2 = 4.2, LOOP = 7, LEAD = .3;
+    const clamp = x => Math.max(0, Math.min(1, x));
+    const ramp = (t, t0, d) => clamp((t - t0) / d);
+    const easeOut = x => 1 - Math.pow(1 - clamp(x), 3);
+    const easeInOut = x => { x = clamp(x); return x * x * (3 - 2 * x); };
+    const kick = (t, t0) => t < t0 ? 0 : .035 * Math.exp(-(t - t0) * 9);
+    const set = (el, k, v) => el.setAttribute(k, typeof v === "number" ? +v.toFixed(3) : v);
+
+    function frame(t, glints) {
+      const aB = easeOut(ramp(t, T_BLACK, .12)), aD = easeOut(ramp(t, T_DAGGER, .12));
+      set(E.b, "fill-opacity", aB); set(E.b, "stroke-opacity", aB);
+      set(E.d, "fill-opacity", aD); set(E.d, "stroke-opacity", aD);
+      set(E.fb, "fill-opacity", t >= T_BLACK ? .9 * Math.exp(-(t - T_BLACK) * 5) : 0);
+      set(E.fd, "fill-opacity", t >= T_DAGGER ? .9 * Math.exp(-(t - T_DAGGER) * 5) : 0);
+      const k = 1 + kick(t, T_BLACK) + kick(t, T_DAGGER) + kick(t, T_ARRIVE) * 1.2;
+      set(E.kick, "transform", "translate(361 215) scale(" + k.toFixed(4) + ") translate(-361 -215)");
+
+      // Dagger: tip first from the top right, small recoil on impact
+      const p = ramp(t, T_STRIKE, T_ARRIVE - T_STRIKE);
+      let off = p < 1 ? 1100 * (1 - easeOut(p)) : 0;
+      if (t >= T_ARRIVE) off += 6 * Math.exp(-(t - T_ARRIVE) * 18) * Math.cos((t - T_ARRIVE) * 70);
+      const on = t >= T_STRIKE;
+      set(E.dagger, "opacity", on ? 1 : 0);
+      set(E.dagger, "transform", "translate(" + off.toFixed(1) + " 0)");
+      if (on && p < 1) {
+        set(E.streak, "d", "M" + (off + 1700).toFixed(1) + " 0 L" + (off + 250).toFixed(1) + " -12 L" + (off + 250).toFixed(1) + " 12 Z");
+        set(E.streak, "opacity", .9 * (1 - p));
+      } else set(E.streak, "opacity", 0);
+
+      // Glints: a white band from the guard to the tip with a star riding on it, then a weaker second one; repeats every 7 s
+      const gt = t < T_GLINT ? t : T_GLINT + ((t - T_GLINT) % LOOP);
+      const g = ramp(gt, T_GLINT, .45), gx = 140 - 430 * easeInOut(g), ga = glints && g > 0 && g < 1 ? Math.sin(Math.PI * g) : 0;
+      const g2 = ramp(gt, T_GLINT2, .5), g2x = 140 - 430 * easeInOut(g2), g2a = glints && g2 > 0 && g2 < 1 ? .55 * Math.sin(Math.PI * g2) : 0;
+      set(E.glint, "x", gx - 70); set(E.glint, "opacity", ga);
+      set(E.glint2, "x", g2x - 35); set(E.glint2, "opacity", g2a);
+      set(E.flare, "transform", "translate(" + gx.toFixed(1) + " 0) scale(" + (.45 + .55 * clamp((gx + 260) / 388)).toFixed(3) + ")");
+      set(E.flare, "opacity", ga);
+
+      // Gem: flash on impact, then a slow breath
+      const dt = t - (T_ARRIVE + .05);
+      const gem = dt < 0 ? 0 : Math.exp(-dt * 3) + .55 * clamp(dt / .4) * (.85 + .15 * Math.sin(dt * 3.2));
+      set(E.gemglow, "opacity", clamp(gem * .9)); set(E.gemcore, "opacity", clamp(gem)); set(E.gemspec, "opacity", clamp(gem * .9));
+
+      set(E.studios, "opacity", easeOut(ramp(t, T_ARRIVE, .45)));
+      set(E.studios, "letter-spacing", 6 + 10 * easeOut(ramp(t, T_ARRIVE, .9)));
+    }
+
+    if (still) { frame(60, false); svg.classList.add("live"); return; }
+    frame(0, true); svg.classList.add("live");
+    let start = null, raf = 0, inView = true;
+    function tick(now) {
+      if (start === null) start = now;
+      frame((now - start) / 1000 + LEAD, true);
+      raf = inView && !document.hidden ? requestAnimationFrame(tick) : 0;
+    }
+    const resume = () => { if (!raf && inView && !document.hidden) raf = requestAnimationFrame(tick); };
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(es => { inView = es[0].isIntersecting; resume(); }).observe(svg);
+    }
+    document.addEventListener("visibilitychange", resume);
+    raf = requestAnimationFrame(tick);
+  })();
 
   function applyLinks() {
     document.querySelectorAll("[data-link]").forEach(a => {
