@@ -1,3 +1,5 @@
+<p align="center"><img src="assets/brand/github-banner.png" alt="Black Dagger Studios" width="100%"></p>
+
 # Black Dagger Studios
 
 Official website of **Black Dagger Studios** – an independent studio making dark, story-driven games on Roblox.
@@ -13,9 +15,9 @@ Play the campaign solo with an AI squad, or bring a friend in co-op. **In develo
 ## Join us
 
 - 💬 Discord: https://discord.gg/8YN44DyKuV
-- ▶️ YouTube: https://www.youtube.com/channel/UCyZihVd1fm_9QD7kMjyrAzg
+- ▶️ YouTube: https://www.youtube.com/@BlackDaggerStudiosHQ
 - ✉️ Collaboration: blackdaggercollaboration@gmail.com
 
 ---
 
-*Not affiliated with Roblox Corporation.*
+*© 2026 Black Dagger Studios. All rights reserved. Not affiliated with Roblox Corporation.*
