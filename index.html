@@ -365,6 +365,7 @@
     <svg class="hero-logo" viewBox="0 0 720 300" aria-hidden="true" focusable="false">
       <defs>
         <clipPath id="bladeClip"><path d="M-260 0 L128 -12 L128 12 Z"/></clipPath>
+        <clipPath id="fullerClip"><path d="M-228 0 L124 -3 L124 3 Z"/></clipPath>
         <linearGradient id="glintGrad" x1="0" x2="1" y1="0" y2="0">
           <stop offset="0" stop-color="#FFFFFF" stop-opacity="0"/>
           <stop offset="0.5" stop-color="#FFFFFF" stop-opacity="1"/>
@@ -397,6 +398,7 @@
                 <rect id="hl-glint" x="70" y="-14" width="140" height="28" fill="url(#glintGrad)" opacity="0"/>
                 <rect id="hl-glint2" x="105" y="-14" width="70" height="28" fill="url(#glintGrad)" opacity="0"/>
               </g>
+              <g clip-path="url(#fullerClip)"><use href="#hl-glint"/><use href="#hl-glint"/><use href="#hl-glint2"/><use href="#hl-glint2"/></g>
               <circle id="hl-gemglow" cx="133" cy="0" r="16" fill="#FF2A48" opacity="0.45" filter="url(#gemBlur)"/>
               <circle cx="133" cy="0" r="5" fill="#C8102E"/>
               <circle id="hl-gemcore" cx="133" cy="0" r="5" fill="#FF6B7E" opacity="0.5"/>
